@@ -21,10 +21,10 @@ $videoCounter = 0;
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['upload'])) {
   if ($_POST['code'] == '000000000') { //Code load video
 echo $_FILES['video']['name'];
-   if (strlen($_FILES['video']['name']) > 26) { echo "<script>alert('Имя загружаемого файла больше 26 символов, а должно быть меньше 26 символов.')</script>"; }
+   if (strlen($_FILES['video']['name']) > 26) { echo "<script>alert('Name file more 26 symbols')</script>"; }
    else {
    $formatFile = substr($_FILES['video']['name'], -3);
-   if ($formatFile !== "avi" || $formatFile !== "mp4") { echo "<script>alert('Неверный формат загружаемых файлов. Возможна загрузка только: mp4, avi')</script>"; }
+   if ($formatFile !== "avi" || $formatFile !== "mp4") { echo "<script>alert('Not correct file format: mp4 or avi only')</script>"; }
    if ($formatFile == "avi" || $formatFile == "mp4") {
     $uploadDir = '/var/www/html/videoStorage/';
     $originalFile = $uploadDir . $_FILES['video']['name'];
@@ -37,14 +37,14 @@ echo $_FILES['video']['name'];
         $command = "echo $counterVideo > /var/www/html/counter";
         exec($command);
         if ($returnVar == 0) {
-        echo "<script>alert('Видео успешно загружено и перекодировано')</script>"; header("Location: https://bppk.info:83/");
-        } else { echo "Произошла ошибка при перекодировке видео."; }
+        echo "<script>alert('Video load OK')</script>"; header("Location: https://bppk.info:83/");
+        } else { echo "Recoder Error"; }
         // Delete original file
         unlink($originalFile);
-    } else { echo "Ошибка при загрузке файла."; }
+    } else { echo "Error load file"; }
   }
 }
-} else { echo "<script>alert('Неверный код загрузки')</script>"; }
+} else { echo "<script>alert('Load code not correct')</script>"; }
   }
 
 if (isset($_POST['delete']) && $_POST['codeDelete'] == '00000000000') { //Code for delete video
@@ -60,8 +60,8 @@ header("Location: https://bppk.info:83/");
 <title>Видеохостинг БППК</title>
 <style>
    .table {
-    width: 300px; /* Ширина таблицы */
-    margin: auto; /* Выравниваем таблицу по центру */
+    width: 300px;
+    margin: auto;
    }
         .table-bordered {
             border-collapse: collapse;
@@ -77,9 +77,9 @@ header("Location: https://bppk.info:83/");
     <script>
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(function() {
-                alert('Скопировано в буфер обмена: ' + text);
+                alert('Copy in clipboard ok: ' + text);
             }, function(err) {
-                alert('Ошибка при копировании: ', err);
+                alert('Copy in clipboard error:  ', err);
             });
         }
     </script>
