@@ -86,27 +86,27 @@ header("Location: https://bppk.info:83/");
 </head>
 <body>
         <center>
-    <h1>Видеохостинг БППК</h1><br>
-<button class="btn btn-secondary" onclick="window.location.href='https://bppk.info'">Вернуться на сайт</button><br><br>
-<?php if ($_SERVER['REMOTE_ADDR'] == "31.132.151.158" || $_SERVER['REMOTE_ADDR'] == "192.168.4.1" ) { ?>
+    <h1>Videohosting</h1><br>
+<button class="btn btn-secondary" onclick="window.location.href='https://bppk.info'">Return</button><br><br>
+<?php if ($_SERVER['REMOTE_ADDR'] == "31.132.151.158" || $_SERVER['REMOTE_ADDR'] == "192.168.4.1" ) { ?> // Menu add control panel (delelte and add video) depending ip address access
 
 <details class="btn btn-primary">
   <summary>Администрирование файлов</summary>
 <br><br>
    <form action="" method="post" enctype="multipart/form-data">
-        <label for="video">Выберите видео файл: </label>
+        <label for="video">Choice video file: </label>
         <input type="file" name="video" id="video" accept="video/mp4, video/x-msvideo" required>
-        <label for="code">Введите код загрузки: </label>
+        <label for="code">Enter code load: </label>
         <input type="password" name="code" id="code" required>
-        <button type="submit" name="upload">Загрузить</button>
+        <button type="submit" name="upload">Load</button>
 </form>
 <hr>
    <form action="" method="post">
-        <label for="videoFile">Укажите имя файл: </label>
+        <label for="videoFile">File name: </label>
         <input type="input" name="videoFile" id="videoFile" pattern="[^*]+"  required>
-        <label for="codeDelete">Введите код удаления: </label>
+        <label for="codeDelete">Enter code delete: </label>
         <input type="password" name="codeDelete" id="codeDelete" required>
-        <button type="submit" name="delete">Удалить</button>
+        <button type="submit" name="delete">Delete</button>
 </form>
 </details>
 
@@ -117,9 +117,9 @@ header("Location: https://bppk.info:83/");
     <?php else: ?>
         <table class="table table-bordered">
         <?php foreach ($mp4Files as $file):
-$link = "<video width=\"320\" height=\"240\"  controls><source src=\"https://bppk.info:83/$file\"></video>";
+$link = "<video width=\"320\" height=\"240\"  controls><source src=\"https://bppk.info:83/$file\"></video>"; //Change link for you ip address
 $linkEscaped = htmlspecialchars($link, ENT_QUOTES, 'UTF-8');
-$url = "https://bppk.info:83/$file";
+$url = "https://bppk.info:83/$file"; //Change link for you ip address
 $urlEscaped = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
 
 ?>
@@ -133,9 +133,9 @@ $urlEscaped = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
                     Your browser does not support the video tag.
                 </video>
                 <p class="text-nowrap" ><?php echo substr(str_replace("_", " ", htmlspecialchars(basename($file))), 0, -4); ?></p>
-<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $linkEscaped; ?>')">Скопировать код для сайта</button>
+<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $linkEscaped; ?>')">Copy code for site</button>
 <br><br>
-             <center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $urlEscaped; ?>')">Скопировать ссылку</button>
+             <center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $urlEscaped; ?>')">Copy URL</button>
             </div>
                 <?php echo "</td>"; } elseif ($videoCounter == 1) {
                 echo  "<tr><td>";
@@ -146,9 +146,9 @@ $urlEscaped = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
                     Your browser does not support the video tag.
                 </video>
                 <p class="text-nowrap" ><?php echo substr(str_replace("_", " ", htmlspecialchars(basename($file))), 0, -4); ?></p>
-<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $linkEscaped; ?>')">Скопировать код для сайта</button>
+<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $linkEscaped; ?>')">Copy code for site</button>
 <br><br>
-<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $urlEscaped; ?>')">Скопировать ссылку</button>
+<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $urlEscaped; ?>')">Copy URL</button>
             </div>
          <?php echo "</td>";}  elseif ($videoCounter == 3) {
                 echo  "<td>";
@@ -159,9 +159,9 @@ $urlEscaped = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
                     Your browser does not support the video tag.
                 </video>
                 <p class="text-nowrap" ><?php echo substr(str_replace("_", " ", htmlspecialchars(basename($file))), 0, -4); ?></p>
-<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $linkEscaped; ?>')">Скопировать код для сайта</button>
+<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $linkEscaped; ?>')">Copy code for site</button>
 <br><br>
-<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $urlEscaped; ?>')">Скопировать ссылку</button>
+<center><button class="btn btn-primary" onclick="copyToClipboard('<?php echo $urlEscaped; ?>')">Copy URL</button>
             </div>
                 <?php echo "</td></tr>"; $videoCounter = 0;} ?>
         <?php endforeach; ?>
